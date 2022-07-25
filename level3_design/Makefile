@@ -4,7 +4,7 @@ TOPLEVEL_LANG ?= verilog
 
 PWD=$(shell pwd)
 
-VERILOG_SOURCES = $(PWD)/               # provide your design path
+VERILOG_SOURCES = $(PWD)/bubble.v     # provide your design path
 
 TOPLEVEL :=   bubble        # design file
 MODULE   :=   test_bubble  # test file
