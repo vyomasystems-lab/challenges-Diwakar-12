@@ -18,19 +18,31 @@ async def test_seq_bug1(dut):
     cocotb.start_soon(clock.start())        # Start the clock
 
     # reset
+    cocotb.log.info(f'answer={dut.current_state.value}')
     dut.reset.value = 1
     await FallingEdge(dut.clk)  
     dut.reset.value = 0
     await FallingEdge(dut.clk)
+    cocotb.log.info(f'answer={dut.current_state.value}')
 
     cocotb.log.info('#### CTB: Develop your test here! ######')
+    cocotb.log.info('helloo hi')
+    print("hi uc")
     dut.inp_bit.value=1
     await FallingEdge(dut.clk)
+    cocotb.log.info(f'answer={dut.current_state.value} output={dut.seq_seen.value}')
+    dut.inp_bit.value=1
+    await FallingEdge(dut.clk)
+    cocotb.log.info(f'answer={dut.current_state.value} output={dut.seq_seen.value}')
     dut.inp_bit.value=0
     await FallingEdge(dut.clk)
+    cocotb.log.info(f'answer={dut.current_state.value} output={dut.seq_seen.value}')
     dut.inp_bit.value=1
     await FallingEdge(dut.clk)
+    cocotb.log.info(f'answer={dut.current_state.value} output={dut.seq_seen.value}')
     dut.inp_bit.value=1
     await FallingEdge(dut.clk)
-    assert dut.seq_seen.value==1
+    cocotb.log.info(f'answer={dut.current_state.value} output={dut.seq_seen.value}')
+    assert dut.seq_seen.value==1,"bug for input stream identified {input}".format(input=11011)
 
+    # cocotb.log.info(f'answer={dut.current_state.value} output ={dut.seq_seen.value}')
