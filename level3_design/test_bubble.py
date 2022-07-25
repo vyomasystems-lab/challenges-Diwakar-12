@@ -28,9 +28,9 @@ async def test_bubble_bug1(dut):
     cocotb.log.info('dut.in1.value {j}'.format(j=dut.in1.value))
     await FallingEdge(dut.clk)
     await FallingEdge(dut.clk)
-    assert (dut.out1.value==1),"ERROR IN SORTING"
-    # (dut.out2.value==2)
-    # (dut.out3.value==3)
-    # (dut.out4.value==4)
-    # (dut.out5.value==5)
+    assert (dut.out1.value==1),"ERROR IN SORTING1"
+    assert (dut.out2.value==2),"ERROR IN SORTING2"
+    assert (dut.out3.value==4),"ERROR IN SORTING3"
+    assert (dut.out4.value==3),"ERROR IN SORTING4"
+    assert (dut.out5.value==5),"ERROR IN SORTING5"
     
