@@ -43,6 +43,6 @@ async def test_seq_bug1(dut):
     dut.inp_bit.value=1
     await FallingEdge(dut.clk)
     cocotb.log.info(f'answer={dut.current_state.value} output={dut.seq_seen.value}')
-    assert dut.seq_seen.value==1,"bug for input stream identified {input}".format(input=11011)
+    assert dut.seq_seen.value==1,"bug for input stream identified {input} expected output {out}".format(input=11011,out=1)
 
-    # cocotb.log.info(f'answer={dut.current_state.value} output ={dut.seq_seen.value}')
+    
