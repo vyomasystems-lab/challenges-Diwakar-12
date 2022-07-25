@@ -5,7 +5,7 @@
 `timescale 1 ns / 1 ps
 // Declare the module and its ports. This is
 // using Verilog-2001 syntax.
-module sort (
+module bubble(
   input  wire clk,
   input  wire [15:0] in1, in2, in3, in4, in5,
   output reg  [15:0] out1, out2, out3, out4, out5
