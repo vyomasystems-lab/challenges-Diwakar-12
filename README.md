@@ -9,7 +9,7 @@ In this challenges we will be going to see the Designs such as ,
 
 ## LEVEL 2 DESIGN 1
 
-- COPROCESSSOR
+- BITMANIPULATION COPROCESSSOR
 
 ## LEVEL 3 DESIGN 
 
