@@ -57,6 +57,9 @@ Based on the above test input and analysing the design, we see the following
 In bubble sort module the swapping of inputs in array occurs when 1st number is greater than 2nd number.so the logic should be ``` (array[j] > array[j + 1]) ``` ,But the bug code is checking vice versa ``` (array[j] < array[j + 1]) ``` and sorting in descending order.
 
 The following error is seen:
+![bbubb](https://user-images.githubusercontent.com/77403373/180994279-9df9198c-5d7f-4821-a7e7-ad40f8b320de.png)
+
+
 ```
 AssertionError: ERROR IN SORTING ELEMENTS expected 5 in position 1 but got 0x9 
 ```
@@ -92,5 +95,5 @@ Here we can see the input values are sorted in *descending aorder* but expected 
 
 ## Is the verification complete ?
 
-yes ,checked for all combinations of input with constraints 0 to 65535 and validated the output values
+yes ,checked for all combinations of input with constraints between [0,65535] and validated the output values
 
