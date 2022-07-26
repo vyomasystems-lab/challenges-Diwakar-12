@@ -54,3 +54,7 @@ For the mux design, the logic should be ``sel=5'b01100`` instead of ``sel=5'b011
 
 ## Design Fix
 Updating the design and re-running the test makes the test pass.
+
+![mux2](https://user-images.githubusercontent.com/77403373/180928920-a689c77f-7540-4917-84c7-82ab203a39dc.png)
+
+The updated design is checked in as mux_fix.v
