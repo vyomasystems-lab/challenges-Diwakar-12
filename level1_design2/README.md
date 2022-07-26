@@ -24,12 +24,15 @@ The values are assigned to the input port using
 ```
 
 The assert statement is used for comparing the seq-detect's ouput to the expected value.
+![seq error](https://user-images.githubusercontent.com/77403373/180990433-a1629db2-0282-4ca3-b3e8-ed4146ead3b9.png)
+
 
 The following error is seen:
 ```
     assert dut.seq_seen.value==1,"bug for input stream identified {input} expected output {out}".format(input=11011,out=1)
     AssertionError: bug for input stream identified 11011 expected output 1
 ```
+
 ## Test Scenario 
 - Test Inputs: inp_bit=11011
 - Expected Output: seq_seen=1
