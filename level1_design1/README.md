@@ -16,4 +16,41 @@ Here inputs are assigned as for odd ports as 1 and for even ports as 0
 The assert statement is used for comparing the mux's outut to the expected value.
 
 The following error is seen:
+![mux1](https://user-images.githubusercontent.com/77403373/180927562-420c3273-67a4-4398-adbb-dadc9a99a10b.png)
+```
+ AssertionError: failed for input select line 13,expected is 1
+```
+In the above error we found that ,for input select line 13 ,the DUT ouput was 0 but expected output for odd port is 1 as per my inputs.
 
+## Test Scenario **(Important)**
+1) BUG 1 *for select line 13*
+- Test Inputs: sel=13
+- Expected Output: out=1
+- Observed Output in the DUT dut.out=0
+
+Output mismatches for the above inputs proving that there is a design bug
+
+2) BUG 2 *for select line 12*
+- Test Inputs: sel=12
+- Expected Output: out=0
+- Observed Output in the DUT dut.out=0
+
+Output matches for the above input but in code for port 12 output was not declared as input12.By default case output becomes 0'
+
+## Design Bug
+Based on the above test input and analysing the design, we see the following
+
+-for bug in selectline 13
+```
+5'b01101: out = inp12;
+```
+For the mux design, the logic should be ``out=inp13`` instead of ``out=inp12`` as in the design code.
+
+-for bug in selectline 12
+```
+5'b01101: out = inp12;
+```
+For the mux design, the logic should be ``sel=5'b01100`` instead of ``sel=5'b01101`` as in the design code.
+
+## Design Fix
+Updating the design and re-running the test makes the test pass.
