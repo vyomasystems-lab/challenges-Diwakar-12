@@ -1,7 +1,7 @@
 The verification environment is setup using Vyoma's UpTickPro provided for the hackathon
 
 ```screenshot of gitpod environment ```
-![Screenshot (35)](https://user-images.githubusercontent.com/77403373/180925890-8932e808-45cd-43ae-b2ae-767de5f0f3ad.png)
+![](https://user-images.githubusercontent.com/77403373/180925890-8932e808-45cd-43ae-b2ae-767de5f0f3ad.png)
 
 ## Verification Environment
 The [CoCoTb](https://www.cocotb.org/) based Python test is developed as explained. The test drives inputs to the Design Under Test (multiplexer module here) which takes in 5-bit input *sel* and 2-bit inputs from *inp1 to inp29* and gives 2-bit output *out*
