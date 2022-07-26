@@ -78,8 +78,15 @@ Updating the design and re-running the test makes the test pass.
 The updated design is checked in as bubble.v
 
 ## Verification Strategy
+-first assign all the inputs to the DUT
 
+-then check correct for output
 
+-validate with expected output
+
+-do it for all combinations of inputs and check for expected outputs
+
+-rectify the bugs
 
 ## Is the verification complete ?
 
