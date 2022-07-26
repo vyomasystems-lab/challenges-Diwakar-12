@@ -55,9 +55,9 @@ For the sequence detect design, the logic should be in state seq1 if input 1 is 
 ## Design Fix
 Updating the design and re-running the test makes the test pass.
 
+![seq](https://user-images.githubusercontent.com/77403373/180933959-72363e91-c101-4363-a492-c0bdbeddf50e.png)
 
-
-The updated design is checked in as adder_fix.v
+The updated design is checked in as seqdetect_fix.v
 
 ## Verification Strategy
 
