@@ -33,6 +33,29 @@ The assert statement is used for comparing the bubble sort model's output to the
  assert (dut.out4.value==list1[3]),"ERROR IN SORTING ELEMENTS expected {e5} in position 4 but got {k} ".format(e5=list1[3],k=hex(dut.out4.value))
  assert (dut.out5.value==list1[4]),"ERROR IN SORTING ELEMENTS expected {e5} in position 5 but got {k}".format(e5=list1[4],k=hex(dut.out5.value))
 ```
+
+## Correct Design 
+Correct design running the test makes the test pass.
+Here i have created a list of all the inputs in array ```list1=[a,b,c,d,e]``` and sorted for checking (validating) the DUT outputs 
+
+![bubbbbb](https://user-images.githubusercontent.com/77403373/180991920-6c974933-1e9b-41f1-b637-3ff3272232ce.png)
+
+The updated design is checked in as bubble.v
+
+## Design Bug
+Based on the above test input and analysing the design, we see the following
+
+```
+ for (j = 1 ; j < i; j = j + 1) begin
+          if (array[j] < array[j + 1])    =========> bug
+          begin
+            temp = array[j];
+            array[j] = array[j + 1];
+            array[j + 1] = temp;
+  end end
+```
+In bubble sort module the swapping of inputs in array occurs when 1st number is greater than 2nd number.so the logic should be ``` (array[j] > array[j + 1]) ``` ,But the bug code is checking vice versa ``` (array[j] < array[j + 1]) ``` and sorting in descending order.
+
 The following error is seen:
 ```
 AssertionError: ERROR IN SORTING ELEMENTS expected 5 in position 1 but got 0x9 
@@ -53,29 +76,8 @@ AssertionError: ERROR IN SORTING ELEMENTS expected 5 in position 1 but got 0x9
 
 Here the inpurts are 9,7,8,6,5 and the expected outputs are 5,6,7,8,9 but the DUT output is 9,8,7,6,5 .
 Here we can see the input values are sorted in *descending aorder* but expected output is *ascending order* .
-Here i have created a list of all the inputs in array ```list1=[a,b,c,d,e]``` and sorted for checking (validating) the DUT outputs 
-Output mismatches for the above inputs proving that there is a design bug
+*Output mismatches for the above inputs proving that there is a design bug*
 
-## Design Bug
-Based on the above test input and analysing the design, we see the following
-
-```
- for (j = 1 ; j < i; j = j + 1) begin
-          if (array[j] < array[j + 1])    =========> bug
-          begin
-            temp = array[j];
-            array[j] = array[j + 1];
-            array[j + 1] = temp;
-  end end
-```
-In bubble sort module the swapping of inputs in array occurs when 1st number is greater than 2nd number.so the logic should be ``` (array[j] > array[j + 1]) ``` ,But the bug code is checking vice versa ``` (array[j] < array[j + 1]) ``` and sortiong in descending order. so we need to change the logic.
-
-## Design Fix
-Updating the design and re-running the test makes the test pass.
-
-![bubb2](https://user-images.githubusercontent.com/77403373/180945520-986846c1-42c3-4836-a99f-ba4b69cb1404.png)
-
-The updated design is checked in as bubble.v
 
 ## Verification Strategy
 -first assign all the inputs to the DUT
