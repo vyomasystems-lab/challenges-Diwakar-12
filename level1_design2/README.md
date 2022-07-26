@@ -55,6 +55,17 @@ SEQ_1:
 For the sequence detect design, the logic is if ithe current state is seq1 and  if input 1 is given means then the next state should be the same state  ``next_state=SEQ_1`` instead of ``IDLE`` as in the design code for non sequence overlapping case.
 
 This identification of bug in sequence detector is corrected using *state diagram* realization for requires application of non-sequence overlapping
+ 
+ Bug Fixed code
+```
+SEQ_1:
+      begin
+        if(inp_bit == 1)
+          next_state = SEQ_1;
+        else
+          next_state = SEQ_10;
+      end
+```
 
  
 ## Design Fix
