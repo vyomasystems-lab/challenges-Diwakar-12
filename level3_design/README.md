@@ -5,7 +5,9 @@ The verification environment is setup using [Vyoma's UpTickPro](https://vyomasys
 
 ## Verification Environment
 
-The [CoCoTb](https://www.cocotb.org/) based Python test is developed as explained. The test drives inputs to the Design Under Test (bubble sort module here) which takes in 15-bit inputs *in1* , *in2* , *in3* , *in4* and *in5* and gives 15-bit outputs *out1* , *out2* , *out3* , *out4* and *out5* sorted in ascending order.
+The [CoCoTb](https://www.cocotb.org/) based Python test is developed as explained. The test drives inputs to the Design Under Test (bubble sort module here) which takes in 16-bit 5 inputs *in1* , *in2* , *in3* , *in4* and *in5* and gives 16-bit 5 outputs *out1* , *out2* , *out3* , *out4* and *out5* sorted in ascending order.
+
+input constraints is from 0 to 2^16-1 which is 65535. ``` [0 to 65535]
 
 The values are assigned to the input ports by getting the value from the user as follows: 
 ```
@@ -23,8 +25,59 @@ The values are assigned to the input ports by getting the value from the user as
 ```
 
 The assert statement is used for comparing the bubble sort model's output to the expected value.
-
+```
+ assert (dut.out1.value==list1[0]),"ERROR IN SORTING ELEMENTS expected {e5} in position 1 but got {k} ".format(e5=list1[0],k=hex(dut.out1.value))
+ assert (dut.out2.value==list1[1]),"ERROR IN SORTING ELEMENTS expected {e5} in position 2 but got {k}".format(e5=list1[1],k=hex(dut.out2.value))
+ assert (dut.out3.value==list1[2]),"ERROR IN SORTING ELEMENTS expected {e5} in position 3 but got {k} ".format(e5=list1[2],k=hex(dut.out3.value))
+ assert (dut.out4.value==list1[3]),"ERROR IN SORTING ELEMENTS expected {e5} in position 4 but got {k} ".format(e5=list1[3],k=hex(dut.out4.value))
+ assert (dut.out5.value==list1[4]),"ERROR IN SORTING ELEMENTS expected {e5} in position 5 but got {k}".format(e5=list1[4],k=hex(dut.out5.value))
+```
 The following error is seen:
 ```
+AssertionError: ERROR IN SORTING ELEMENTS expected 5 in position 1 but got 0x9 
+```
+## Test Scenario **(Important)**
+- Test Inputs: in1=9, in2=7, in3=8 ,in4=6, in5=5 i.e [9,7,8,6,5] .
+
+- Expected Output: out1=5, out2=6, out3= 7, out4= 8, out5=9 i.e [5,6,7,8,9].
+
+- Observed Output in the DUT : dut.out1.value=9 ,
+                              dut.out2.value=8 ,
+                              dut.out3.value= 7,
+                              dut.out4.value=6,
+                              dut.out5.value=6 
+                              i.e [9,8,7,6,5].
+
+Here the inpurts are 9,7,8,6,5 and the expected outputs are 5,6,7,8,9 but the DUT output is 9,8,7,6,5 .
+Here we can see the input values are sorted in *descending aorder* but expected output is *ascending order* .
+Here i have created a list of all the inputs in array ```list1=[a,b,c,d,e]``` and sorted for checking (validating) the DUT outputs 
+Output mismatches for the above inputs proving that there is a design bug
+
+## Design Bug
+Based on the above test input and analysing the design, we see the following
 
 ```
+ for (j = 1 ; j < i; j = j + 1) begin
+          if (array[j] < array[j + 1])    =========> bug
+          begin
+            temp = array[j];
+            array[j] = array[j + 1];
+            array[j + 1] = temp;
+  end end
+```
+In bubble sort module the swapping of inputs in array occurs when 1st number is greater than 2nd number.so the logic should be ``` (array[j] > array[j + 1]) ``` ,But the bug code is checking vice versa ``` (array[j] < array[j + 1]) ``` and sortiong in descending order. so we need to change the logic.
+
+## Design Fix
+Updating the design and re-running the test makes the test pass.
+
+![bubb](https://user-images.githubusercontent.com/77403373/180941257-29f1a214-a689-46d0-a4c0-a81f587e678c.png)
+
+
+The updated design is checked in as adder_fix.v
+
+## Verification Strategy
+
+## Is the verification complete ?
+
+
+
