@@ -41,6 +41,8 @@ Output mismatches for the above inputs proving that there is a design bug
 ## Design Bug
 Based on the above test input and analysing the design, we see the following
 
+-BUG 1
+
 ```
 SEQ_1:
       begin
@@ -50,8 +52,11 @@ SEQ_1:
           next_state = SEQ_10;
       end
 ```
-For the sequence detect design, the logic should be in state seq1 if input 1 is given means then the next state should be the same state  ``next_state=SEQ_1`` instead of ``IDLE`` as in the design code.
+For the sequence detect design, the logic is if ithe current state is seq1 and  if input 1 is given means then the next state should be the same state  ``next_state=SEQ_1`` instead of ``IDLE`` as in the design code for non sequence overlapping case.
 
+This identification of bug in sequence detector is corrected using *state diagram* realization for requires application of non-sequence overlapping
+
+ 
 ## Design Fix
 Updating the design and re-running the test makes the test pass.
 
@@ -60,6 +65,14 @@ Updating the design and re-running the test makes the test pass.
 The updated design is checked in as seqdetect_fix.v
 
 ## Verification Strategy
+
+- check for inputs randomly and validate with expected value of output
+
+- check for given input condition for non-sequence overlapping reference input 11011 and compare the outputs 
+
+- rectify the bug using state diagram diagnosis
+ 
+ - execute for rectified code and see the outputs
 
 ## Is the verification complete ?
 
