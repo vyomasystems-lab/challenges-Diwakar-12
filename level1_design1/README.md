@@ -58,3 +58,17 @@ Updating the design and re-running the test makes the test pass.
 ![mux2](https://user-images.githubusercontent.com/77403373/180928920-a689c77f-7540-4917-84c7-82ab203a39dc.png)
 
 The updated design is checked in as mux_fix.v
+
+## Verification Strategy
+ -first assign all the inputs to the DUT
+ 
+ -then check for random select line for output
+ 
+ -validate with expected output
+ 
+ -do it for all combinations of select lines and check for expected outputs
+ 
+ -rectify the bugs
+ 
+## Is the verification complete ?
+ *Yes the verification is completed as it runned for selectline0 to  selectline 30 for correct output* 
