@@ -1,13 +1,14 @@
 # Bubble sort module Design Verification
 
 The verification environment is setup using [Vyoma's UpTickPro](https://vyomasystems.com) provided for the hackathon.
+![Screenshot (34)](https://user-images.githubusercontent.com/77403373/180944951-42995623-3753-4604-b8f5-93061c57c8bd.png)
 
 
 ## Verification Environment
 
 The [CoCoTb](https://www.cocotb.org/) based Python test is developed as explained. The test drives inputs to the Design Under Test (bubble sort module here) which takes in 16-bit 5 inputs *in1* , *in2* , *in3* , *in4* and *in5* and gives 16-bit 5 outputs *out1* , *out2* , *out3* , *out4* and *out5* sorted in ascending order.
 
-input constraints is from 0 to 2^16-1 which is 65535. ``` [0 to 65535]
+input constraints is from 0 to 2^16-1 which is 65535. ``` [0 to 65535] ```
 
 The values are assigned to the input ports by getting the value from the user as follows: 
 ```
@@ -37,7 +38,9 @@ The following error is seen:
 AssertionError: ERROR IN SORTING ELEMENTS expected 5 in position 1 but got 0x9 
 ```
 ## Test Scenario **(Important)**
-- Test Inputs: in1=9, in2=7, in3=8 ,in4=6, in5=5 i.e [9,7,8,6,5] .
+- Here iam prompting the users for input values in test file python using int(input('Enter ith number'))
+
+- Test Inputs: in1=9, in2=7, in3=6 ,in4=5, in5=4 i.e [9,8,7,6,5] .
 
 - Expected Output: out1=5, out2=6, out3= 7, out4= 8, out5=9 i.e [5,6,7,8,9].
 
@@ -45,7 +48,7 @@ AssertionError: ERROR IN SORTING ELEMENTS expected 5 in position 1 but got 0x9
                               dut.out2.value=8 ,
                               dut.out3.value= 7,
                               dut.out4.value=6,
-                              dut.out5.value=6 
+                              dut.out5.value=5 
                               i.e [9,8,7,6,5].
 
 Here the inpurts are 9,7,8,6,5 and the expected outputs are 5,6,7,8,9 but the DUT output is 9,8,7,6,5 .
@@ -70,14 +73,15 @@ In bubble sort module the swapping of inputs in array occurs when 1st number is 
 ## Design Fix
 Updating the design and re-running the test makes the test pass.
 
-![bubb](https://user-images.githubusercontent.com/77403373/180941257-29f1a214-a689-46d0-a4c0-a81f587e678c.png)
+![bubb2](https://user-images.githubusercontent.com/77403373/180945520-986846c1-42c3-4836-a99f-ba4b69cb1404.png)
 
-
-The updated design is checked in as adder_fix.v
+The updated design is checked in as bubble.v
 
 ## Verification Strategy
 
+
+
 ## Is the verification complete ?
 
-
+yes ,checked for all combinations of input with constraints 0 to 65535 and validated the output values
 
