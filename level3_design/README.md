@@ -47,7 +47,7 @@ Based on the above test input and analysing the design, we see the following
 
 ```
  for (j = 1 ; j < i; j = j + 1) begin
-          if (array[j] < array[j + 1])    =========> bug
+          if (array[j] < array[j + 1])    =========> Inserted bug '<' sign instead of '>'
           begin
             temp = array[j];
             array[j] = array[j + 1];
