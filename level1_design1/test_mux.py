@@ -21,5 +21,3 @@ async def test_mux(dut):
         await Timer(2, units='ns')
         dut._log.info(f'A={A:05} model={A%2:02} DUT={int(dut.out.value):02}')
         assert dut.out.value == i%2,"failed for input select line {v},expected is {v1}".format(v=i,v1=i%2)
-    #"Adder result is incorrect: {A}  != {OUT}, expected value={EXP}".format(
-    #         A=int(dut.sel.value), OUT=int(dut.out.value), EXP=0)
